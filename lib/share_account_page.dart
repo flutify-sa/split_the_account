@@ -3,6 +3,7 @@ import 'person_entry.dart';
 import 'total_bill_card.dart';
 import 'person_card.dart';
 import 'tip_display.dart';
+import 'receipt_breakdown.dart';
 
 class ShareAccountPage extends StatefulWidget {
   final VoidCallback onThemeToggle;
@@ -87,6 +88,22 @@ class ShareAccountPageState extends State<ShareAccountPage> {
             onPressed: _clearAll,
             icon: const Icon(Icons.refresh),
             tooltip: 'Clear All',
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder:
+                      (context) => ReceiptBreakdown(
+                        totalBill: totalBill,
+                        people: _people,
+                        outstanding: rawOutstanding,
+                      ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.receipt_long),
+            tooltip: 'Show Receipt Breakdown',
           ),
         ],
       ),
